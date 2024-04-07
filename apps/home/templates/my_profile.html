@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<style>
+    form {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column; /* Added to stack label and textarea vertically */
+        max-width: 800px; /* Added to limit the width of the form */
+    }
+    label {
+        margin-bottom: 10px; /* Added some space between label and textarea */
+    }
+    textarea {
+        height: 100px; /* Adjust height as needed */
+        width: 100%;
+        border: 1px;
+        background-color: rgb(208 208 231 / 53%);
+    }
+    .my_posts {
+        padding-top: 50px;
+       text-align: center;
+    }
+
+    .button-submit {
+        height: 20px;
+        margin: 0 auto;
+        margin-top: 20px;
+        width: 100px;
+        border: none;
+        border-radius: 5px;
+        background-color: blue;
+        color: white;
+    }
+    .button-submit:hover {
+        background-color: rgb(89, 89, 226);
+        width: 105px;
+        cursor: pointer;
+    }
+</style>
+
+
+<div class="feed-noticias">
+    {% if posts %}
+        {% for post in posts %}
+        <div class="post-content">
+            <p>
+                {% if post.author.userprofile.profile_pic %}
+                    <img src="{{ post.author.userprofile.profile_pic.url }}" alt="Profile Picture">
+                {% endif %}
+            </p>
+            <p class="meta_data">Written By: {{ post.author }} </p>
+            <p>{{ post.content }}</p>
+            <p class="meta_data">Likes: {{ post.like_set.count }}</p>
+            <p class="meta_data">{{ post.create_at }}</p>
+            <a href="{% url 'LikePost' post.id %}"><span class="material-symbols-outlined">thumb_up </span></a>
+            <a href="{% url 'DeletePost' post.id %}"><span class="material-symbols-outlined"> delete </span></a>
+        </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+<div class="post">
+    <form action="{% url 'create_post' %}" method="POST">
+        {% csrf_token %}
+        <label style="text-align: center;" for="publish_post"> <strong>What are you thinking right now?</strong> </label>
+        <textarea name="post_content" id="post_content" cols="30" rows="10"></textarea>
+        <button id="button-submit" class="button-submit" type="submit" >Post </button>
+    </form>
+</div>
+
+
+
+
+
+{% endblock %}

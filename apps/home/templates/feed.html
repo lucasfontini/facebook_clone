@@ -1,0 +1,30 @@
+{% load static %}
+
+
+
+<div class="feed-noticias">
+    <a href="/myprofile/{{ id }}"><span class="material-symbols-outlined">
+        add
+    </span></a>
+    Give it shot and make a post
+    {% if posts %}
+        {% for post in posts %}
+        <div class="post-content">
+
+                
+            <p class="meta_data">Written By: {{ post.author }}</p>
+            <p>
+                {% if post.author.userprofile.profile_pic %}
+                    <img  src="{{ post.author.userprofile.profile_pic.url }}" alt="Profile Picture">
+                {% endif %}
+            </p>
+
+            <p>{{ post.content }}</p>
+            <p class="meta_data">Likes: {{ post.like_set.count }}</p>
+            <p class="meta_data">{{ post.create_at }}</p>
+            <a href="{% url 'LikePost' post.id %}"><span class="material-symbols-outlined">thumb_up </span></a>
+            <a href="{% url 'DeletePost' post.id %}"><span class="material-symbols-outlined"> delete </span></a>
+        </div>
+        {% endfor %}
+    {% endif %}
+</div>

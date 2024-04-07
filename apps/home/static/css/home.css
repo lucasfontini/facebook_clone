@@ -1,0 +1,73 @@
+
+body {
+    background-color: #f2f2f2;
+    font-family:'system-ui'
+}
+
+/* Estilos para a barra de navegação */
+.navbar {
+  overflow: hidden;
+  background-color:#f2f2f2;
+  text-align: center
+}
+
+.navbar img {
+  border-radius: 50px;
+}
+
+
+/* Estilos para os links na barra de navegação */
+.navbar a {
+  float: right;
+  display: block;
+  color: #000000;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+/* Mudar a cor de fundo dos links na barra de navegação quando hover */
+.navbar a:hover {
+  color: rgb(62, 81, 204);
+  align-items: baseline;
+}
+
+.navbar img{
+float: right;   
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  text-decoration: none;
+}
+ 
+
+img {
+  float: left;
+  width: 50px;
+
+}
+
+.user-info{
+    float: right;
+    align-items: center;
+}
+.username {
+    margin-left: 10px;
+    color: #000000;
+}
+
+.logo img {
+    width: 200px;
+    padding: 0;
+}
+
+.messages {
+  float: none ;
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+  height: auto;
+  border-radius: 5px;
+  width: 350px;
+  background-color: rgb(27 91 227 / 69%);
+}
+

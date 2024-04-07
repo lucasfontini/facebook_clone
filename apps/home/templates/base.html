@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My page</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/feed.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<div class="logo">
+    <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="">
+</div>
+
+
+<body>
+    <div class="navbar">
+        <div class="user-info">
+            <img src="{{ user_profile.profile_pic.url }}" alt="my_profile"> 
+            <div class="username"> {{ user }} </div>
+        </div> 
+        <a href="/logout/{{ id }}">Logout</a>
+        <a href="/myprofile/{{ id }}">My profile </a>
+        <a href="#contato">Chat</a>
+        <a href="{% url 'home' %}">Feed</a>
+    
+    </div>
+    {% block content %} {% endblock%} 
+     
+</body>
+
+<script src="{% static 'js/my_profile.js' %}"></script>
+{% if messages %}
+<div class="messages"> 
+    {% for message in messages %}
+    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }} </div>
+{% endfor %}
+{% endif %}
+</div>
+</html>
